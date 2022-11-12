@@ -1,0 +1,17 @@
+{
+    "name": "arnold/ipt10-reg-login",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Arnold Lim",
+            "email": "arnoldlim0337@gmail.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^7.0"
+    }
+}
