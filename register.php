@@ -6,11 +6,14 @@ use App\AuthClient;
 
 $client = new AuthClient();
 
-$username = "Arnold Lim";
-$email = "arnoldlim0337@gmail.com";
-$password ="password";
+$username = $_POST['userName'];
+$email = $_POST['email'];
+$password = $_POST['password'];
+// var_dump($username, $email, $password);
 
 $result = $client->register($username, $email, $password);
+
+header('Location: successful-page.php');
 
 // var_dump($result->getStatusCode());
 // var_dump($result->getReasonPhrase());

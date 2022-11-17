@@ -14,7 +14,7 @@ class AuthClient
 	public function __construct()
 	{
 		$this->client = new Client([
-			'base_uri' => 'STRAPI_API_BASE_URL',
+			'base_uri' => STRAPI_API_BASE_URL,
 			'headers' => [
 				'Accept' => 'application/json',
 				'Content-Type' => 'application/json'
@@ -24,13 +24,15 @@ class AuthClient
 
 	public function register($username, $email, $password)
 	{
-		$registration_endpoint = 'registrations'; // ????
+		$registration_endpoint = 'auth/local/register'; // ????
 		return $this->client->post($registration_endpoint, [
 			'json' => [
-				'data' => [
+			
                 'username' => $username,
                 'email' => $email,
-                'password' => $password]
+                'password' => $password,
+				
+				
 
             ] // supply the data here
 		]);
@@ -38,13 +40,24 @@ class AuthClient
 
 	public function login($identifier, $password)
 	{
-		$login_endpoint = ''; // ????
+		$login_endpoint = 'auth/local'; // ????
 		return $this->client->post($login_endpoint, [
 			'json' => [
                 'identifier' => $identifier,
-                'password' => $password
+                'password' => $password,
 
             ] // supply the data here
 		]);
 	}
+	public function getAcc($id)
+	{
+		$welcomepage_endpoint = 'users/' . $id;
+		
+		$response = $this->client->get($welcomepage_endpoint);
+                
+		$body = $response->getBody();
+
+		return $body;
+	}
+
 }
